@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="sendTypeViewController">
+            <connections>
+                <outlet property="backView" destination="sfI-jF-ld1" id="8nE-Eh-guW"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfI-jF-ld1" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="touchBackView:" destination="-1" eventType="touchUpInside" id="OnI-nj-FYf"/>
+                    </connections>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_bg" translatesAutoresizingMaskIntoConstraints="NO" id="wYx-Cw-Unq">
+                    <rect key="frame" x="0.0" y="506" width="375" height="161"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="161" id="tD9-Qz-FT0"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98D-oO-3yH">
+                    <rect key="frame" x="45" y="529" width="284" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="k4W-Nd-nRF"/>
+                    </constraints>
+                    <state key="normal" title="卖家配送" backgroundImage="icon_btn_5">
+                        <color key="titleColor" red="0.1137254902" green="0.1450980392" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="icon_btn_5pressed"/>
+                    <connections>
+                        <action selector="sendBtn:" destination="-1" eventType="touchUpInside" id="7bP-N1-vvi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaj-AI-J8l">
+                    <rect key="frame" x="45" y="602" width="284" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="kxz-WK-1Sx"/>
+                    </constraints>
+                    <state key="normal" title="自行提取" backgroundImage="icon_btn_5">
+                        <color key="titleColor" red="0.1137254902" green="0.1450980392" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="icon_btn_5pressed"/>
+                    <connections>
+                        <action selector="sendBtn:" destination="-1" eventType="touchUpInside" id="FzR-V9-QnU"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="98D-oO-3yH" secondAttribute="trailing" constant="46" id="10L-EJ-T4K"/>
+                <constraint firstAttribute="bottom" secondItem="sfI-jF-ld1" secondAttribute="bottom" id="3vO-ai-xdN"/>
+                <constraint firstItem="wYx-Cw-Unq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ERU-dt-uEj"/>
+                <constraint firstAttribute="bottom" secondItem="gaj-AI-J8l" secondAttribute="bottom" constant="21" id="Kwb-ez-7K5"/>
+                <constraint firstItem="gaj-AI-J8l" firstAttribute="top" secondItem="98D-oO-3yH" secondAttribute="bottom" constant="29" id="M5V-bm-WGs"/>
+                <constraint firstAttribute="trailing" secondItem="wYx-Cw-Unq" secondAttribute="trailing" id="PDE-RK-eVu"/>
+                <constraint firstItem="gaj-AI-J8l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="45" id="PNP-W5-kTi"/>
+                <constraint firstAttribute="bottom" secondItem="wYx-Cw-Unq" secondAttribute="bottom" id="Q8l-FL-50g"/>
+                <constraint firstAttribute="trailing" secondItem="sfI-jF-ld1" secondAttribute="trailing" id="QwB-9Z-bEI"/>
+                <constraint firstItem="98D-oO-3yH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="45" id="cDm-2w-eJy"/>
+                <constraint firstAttribute="trailing" secondItem="gaj-AI-J8l" secondAttribute="trailing" constant="46" id="u1o-31-HKP"/>
+                <constraint firstItem="sfI-jF-ld1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wIW-F9-jBx"/>
+                <constraint firstItem="sfI-jF-ld1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zc6-0t-31U"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="481.5" y="301.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_bg" width="375" height="667"/>
+        <image name="icon_btn_5" width="282" height="44"/>
+        <image name="icon_btn_5pressed" width="282" height="44"/>
+    </resources>
+</document>

@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "ziyigeTBViewController.h"
+#import "IQKeyboardManager.h"
+#import "FrameSize.h"
+
 
 @interface AppDelegate ()
 
@@ -16,6 +20,26 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    ziyigeTBViewController* tb = [[ziyigeTBViewController alloc]init];
+    
+    self.window.rootViewController = tb;
+    
+    [self.window makeKeyAndVisible];
+    
+    [FrameSize setScreen:screenIphone6];
+    
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.shouldResignOnTouchOutside = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.enableAutoToolbar = NO;
+    
+    
     // Override point for customization after application launch.
     return YES;
 }
