@@ -74,45 +74,58 @@
     //
     //    NSArray* time = [curentDateStr componentsSeparatedByString:@"-"];
     //    NSString* day = [time lastObject];
+    //子宜阁：艺术品信托投资平台，所售藏品可退可换，保证每年市场增值10\%
     
-    NSString* content = [NSString stringWithFormat:@"边运动，边赚钱的app，赶快来试用吧，邀请他人有奖金！"];
+    NSString* content;
+    NSString* urlStr;
+    if (self.isDetail) {
+        content = [NSString stringWithFormat:@"子宜阁：艺术品信托投资平台，所售藏品可退可换，保证每年市场增值10%@",@"%"];
+        urlStr = @"http://www.daimang.net.cn/Public/ziyige/share.php?goods_id=";
+    }else{
+        content = [NSString stringWithFormat:@"邀请他人注册使用子宜阁，就有机会获得神秘礼包"];
+        urlStr = @"http://www.daimang.net.cn/share/invite.php?invite_code=";
+    }
+    
+//    NSString* content = [NSString stringWithFormat:@"邀请他人注册使用子宜阁，就有机会获得神秘礼包"];
+    //邀请他人注册使用子宜阁，就有机会获得神秘礼包
+    //http://api.daimang.com/Public/ziyige/index.php?service=User.share&invitation_code=   """+invite_code
 //    NSLog(@"%@",[NSString stringWithFormat:@"%@?user_id=%@&date=%@",SHAREURL,UID,@""]);
-    NSString* urlStr = @"http://api.daimang.com/Public/admin/index.php?service=User.share&invitation_code=";
+//    NSString* urlStr = @"http://www.daimang.net.cn/Public/ziyige/index.php?service=User.share&invitation_code=";//http://www.daimang.net.cn/Public/ziyige/share.php?goods_id=GOODS20160829032804qs4p
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     [shareParams SSDKSetupShareParamsByText:content
                                      images:[UIImage imageNamed:@"1024X1024.png"]
                                         url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]]
-                                      title:@"原力分享"
+                                      title:@"子宜阁分享"
                                        type:SSDKContentTypeWebPage];
     
     
     switch (type) {
         case SSDKPlatformSubTypeQZone:
         {
-            [shareParams SSDKSetupQQParamsByText:content title:@"原力分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]] thumbImage:nil image:[UIImage imageNamed:@"1024X1024.png"] type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeQZone];
+            [shareParams SSDKSetupQQParamsByText:content title:@"子宜阁分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]] thumbImage:nil image:[UIImage imageNamed:@"512"] type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeQZone];
         }
             break;
         case SSDKPlatformSubTypeWechatSession:
         {
-            [shareParams SSDKSetupWeChatParamsByText:content title:@"原力分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]]thumbImage:nil image:[UIImage imageNamed:@"1024X1024.png"] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+            [shareParams SSDKSetupWeChatParamsByText:content title:@"子宜阁分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]]thumbImage:nil image:[UIImage imageNamed:@"512"] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatSession];
         }
             break;
         case SSDKPlatformSubTypeWechatTimeline:
         {
             
-            [shareParams SSDKSetupWeChatParamsByText:content title:@"原力分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]] thumbImage:[UIImage imageNamed:@"1024X1024"] image:[UIImage imageNamed:@"1024X1024"] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatTimeline];
+            [shareParams SSDKSetupWeChatParamsByText:content title:@"子宜阁分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]] thumbImage:[UIImage imageNamed:@"512"] image:[UIImage imageNamed:@"512"] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatTimeline];
         }
             break;
         case SSDKPlatformTypeSinaWeibo:
         {
             
             [shareParams SSDKEnableUseClientShare];
-            [shareParams SSDKSetupSinaWeiboShareParamsByText:content title:@"原力分享" image:[UIImage imageNamed:@"1024X1024.png"] url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeWebPage];
+            [shareParams SSDKSetupSinaWeiboShareParamsByText:content title:@"子宜阁分享" image:[UIImage imageNamed:@"512"] url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeWebPage];
         }
             break;
         case SSDKPlatformTypeQQ:
         {
-            [shareParams SSDKSetupQQParamsByText:content title:@"原力分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]] thumbImage:nil image:[UIImage imageNamed:@"1024X1024.png"] type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformTypeQQ];
+            [shareParams SSDKSetupQQParamsByText:content title:@"子宜阁分享" url:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,self.yaoqingma]] thumbImage:[UIImage imageNamed:@"512"] image:[UIImage imageNamed:@"512"] type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeQQFriend];
         }
             break;
             
@@ -234,7 +247,14 @@
         {
             //            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"sms://10000"]];
             //            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"sms://原力app：边运动边赚钱！快来下载吧！ 请戳-> https://appsto.re/cn/ZrcObb.i"]];
-            [self sendSMS:@"边运动，边赚钱的app，赶快来试用吧，邀请他人有奖金！请戳-> https://appsto.re/cn/ZrcObb.i" recipientList:@[]];
+            //@"邀请他人注册使用子宜阁，就有机会获得神秘礼包"
+            if (self.isDetail) {
+                [self sendSMS:[NSString stringWithFormat:@"邀请他人注册使用子宜阁，就有机会获得神秘礼包！请戳-> %@%@",@"http://www.daimang.net.cn/Public/ziyige/share.php?goods_id=",self.yaoqingma] recipientList:@[]];
+            }else
+            {
+                [self sendSMS:[NSString stringWithFormat:@"邀请他人注册使用子宜阁，就有机会获得神秘礼包！请戳-> %@%@",@"http://www.daimang.net.cn/share/invite.html?invite_code=",self.yaoqingma] recipientList:@[]];
+            }
+            
             return;
         }
             break;
@@ -248,6 +268,7 @@
     //    SSDKPlatformSubTypeWechatSession
     //    SSDKPlatformSubTypeQZone
     //    SSDKPlatformTypeQQ
+    
     [self share:type];
     
 }

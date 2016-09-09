@@ -10,6 +10,7 @@
 #import "buyRecordTableViewCell.h"
 #import "finishedTableViewCell.h"
 #import "orderDetailViewController.h"
+#import "saleAlertViewController.h"
 
 @interface buyRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -17,6 +18,8 @@
     NSInteger typeIndex;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property(strong,nonatomic)UIBarButtonItem* leftItem;
 
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
@@ -34,9 +37,17 @@
     [self registerCell];
     _tableView.estimatedRowHeight = 180;
     
-    [self.model getTradeList:@"0"];
     
-    [self addObserverForNotifications:@[GET_ORDER_LIST_NOTIFICATION,@"touchTypeBtn"]];
+    
+    if (_isRootPush) {
+        self.navigationItem.leftBarButtonItem = self.leftItem;
+        [self.model getTradeList:@"1"];
+    }else
+    {
+        [self.model getTradeList:@"0"];
+    }
+    
+    [self addObserverForNotifications:@[GET_ORDER_LIST_NOTIFICATION,@"touchTypeBtn",CONFIRM_ORDER_NOTIFICATION,BUY_BACK_ORDER_NOTIFICATION]];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -46,7 +57,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc
+{
+    _model = nil;
+}
+
 #pragma mark - getter
+
+-(UIBarButtonItem*)leftItem
+{
+    
+    if (_leftItem == nil) {
+        
+        UIButton* btn = [UIButton buttonWithType:0];
+        btn.frame = CGRectMake(0, 0, 40, 40);
+        [btn setImage:[UIImage imageNamed:@"icon_arrowleft"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(gobackBtn:) forControlEvents:UIControlEventTouchUpInside];
+        _leftItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    }
+    return _leftItem;
+}
 
 -(orderModel*)model
 {
@@ -58,13 +88,55 @@
 
 #pragma mark - private
 
+-(void)gobackBtn:(UIButton*)button
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 -(void)receivedNotification:(NSNotification *)notification
 {
     if ([notification.name isEqualToString:GET_ORDER_LIST_NOTIFICATION]) {
         [_tableView reloadData];
-    }else if ([notification.name isEqualToString:@"touchTypeBtn"])
+    }else if ([notification.name isEqualToString:CONFIRM_ORDER_NOTIFICATION])
     {
+        [self.model getTradeList:@"1"];
+    }else if ([notification.name isEqualToString:BUY_BACK_ORDER_NOTIFICATION])
+    {
+        saleAlertViewController* alert = [[saleAlertViewController alloc]init];
         
+        alert.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        alert.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+        [self.model getTradeList:@"4"];
+    }
+    else if ([notification.name isEqualToString:@"touchTypeBtn"])
+    {
+        NSString* out_trade_no = [[notification userInfo] objectForKey:@"out_trade_no"];
+        NSNumber* index = (NSNumber*)notification.object;
+        switch (index.integerValue) {
+            case 0:
+            {
+                orderDetailViewController* detail = [[orderDetailViewController alloc]init];
+                detail.trade_no = out_trade_no;
+                [self.navigationController pushViewController:detail animated:YES];
+            }
+                break;
+            case 3:
+            {
+                [self.model comfirmOrder:out_trade_no];
+            }
+                break;
+            case 4:
+            {
+                [self.model buyBackOrder:out_trade_no];
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
@@ -86,7 +158,6 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     
     if (typeIndex != 6) {
         buyRecordTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"unfinishCell" forIndexPath:indexPath];

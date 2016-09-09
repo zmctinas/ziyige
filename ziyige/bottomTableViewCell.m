@@ -25,7 +25,7 @@
 {
     _entity = entity;
     
-    self.messageLabel.text = _entity.desc;
+    self.messageLabel.text = [NSString stringWithFormat:@"%@：%@",_entity.auth,_entity.descriptions];
 }
 
 @end

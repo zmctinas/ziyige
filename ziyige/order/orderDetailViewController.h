@@ -7,9 +7,12 @@
 //
 
 #import "fatherViewController.h"
+#import "orderModel.h"
 
 @interface orderDetailViewController : fatherViewController
 
 @property(strong,nonatomic)NSString* trade_no;
+
+@property(strong,nonatomic)orderModel* model;
 
 @end

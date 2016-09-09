@@ -25,7 +25,7 @@
     if ([_distribution isEqualToString:@"express"]) {
         return @"卖家配送";
     }
-    return @"自提提取";
+    return @"自行提取";
 }
 
 @end

@@ -25,7 +25,7 @@
 {
     _entity = entity;
     
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASEURL,_entity.thumb_goods_url]] placeholderImage:[UIImage imageNamed:@""]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASEURL,_entity.thumb_goods_url]] placeholderImage:[UIImage imageNamed:@"icon_avator_default"]];
     _titleLabel.text = _entity.goods_name;
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",_entity.goods_price];
     _guigeLabel.text = _entity.specifications;

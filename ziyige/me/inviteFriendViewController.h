@@ -10,4 +10,6 @@
 
 @interface inviteFriendViewController : fatherViewController
 
+@property(strong,nonatomic)NSString* inviteCode;
+
 @end

@@ -20,7 +20,7 @@
     
     self.title = @"关于我们";
     
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.140/ziyige/about/about.html"]]];
+    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.daimang.net.cn/about/about.html"]]];
     
     // Do any additional setup after loading the view from its nib.
 }

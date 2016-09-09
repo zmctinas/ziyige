@@ -12,9 +12,9 @@
 
 @implementation WebService (index)
 
--(void)requestGoodsWithAct:(NSString *)actid completion:(DMCompletionBlock)completion
+-(void)requestGoodsWithAct:(NSString *)actid pages:(NSString *)pages completion:(DMCompletionBlock)completion
 {
-    NSDictionary *postData = @{@"pages":@"1",@"act_id":actid};
+    NSDictionary *postData = @{@"pages":pages,@"act_id":actid};
     
     [self postWithMethodName:GOODS_LIST data:postData success:^(id JSON) {
         
@@ -33,7 +33,6 @@
                     [goodsResponseEntity mj_setupObjectClassInArray:^NSDictionary *{
                         return @{@"data" : NSStringFromClass([goodsEntity class]),};
                     }];
-                    
                     goodsResponseEntity* response = [goodsResponseEntity mj_objectWithKeyValues:dataDic];
                     
                     completion(YES,nil,response);
@@ -231,6 +230,50 @@
         completion(NO,[error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey],nil);
     }];
     
+}
+
+
+
+-(void)searchGoods:(NSString *)keywords pages:(NSString *)pages type:(NSString *)type cost:(NSString *)cost completion:(DMCompletionBlock)completion
+{
+    NSDictionary* dic = @{
+                          @"key_words":keywords,
+                          @"pages":pages,
+                          @"type":type,
+                          @"price":cost,
+                          };
+    
+    [self postWithMethodName:SEARCH_LIST data:dic success:^(id JSON) {
+        if ([JSON isKindOfClass:[NSDictionary class]]) {
+            
+            NSDictionary *dataDic = [JSON objectForKey:DATA];
+            int status = [[dataDic objectForKey:STATUS] intValue];
+            if (status == ResponseStatusSuccess)
+            {
+                NSDictionary *objDict = [dataDic objectForKey:DATA];
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    [goodsResponseEntity mj_setupObjectClassInArray:^NSDictionary *{
+                        return @{@"data" : NSStringFromClass([goodsEntity class]),};
+                    }];
+                    
+                    goodsResponseEntity* response = [goodsResponseEntity mj_objectWithKeyValues:dataDic];
+                    completion(YES,nil,response);
+                }
+            }else if (status == ResponseStatusFailed)
+            {
+                NSDictionary *objDict = [JSON objectForKey:DATA];
+                NSString *message = SERVER_ERROE_MESSAGE;
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    message = [objDict objectForKey:RESULT_MESSAGE];
+                }
+                completion(YES,message,nil);
+            }
+        }
+    } failure:^(NSError *error, id JSON) {
+        completion(NO,[error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey],nil);
+    }];
 }
 
 

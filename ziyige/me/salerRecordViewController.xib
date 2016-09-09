@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -22,19 +22,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ah-N5-XrH">
                     <rect key="frame" x="0.0" y="10" width="375" height="34"/>
                     <subviews>
-                        <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLE-pf-nyW">
-                            <rect key="frame" x="22" y="2" width="80" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" title="买到的">
-                                <color key="titleColor" red="0.1137254902" green="0.1450980392" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <state key="selected" title="买到的" backgroundImage="icon_btn_menu"/>
-                            <connections>
-                                <action selector="selectStatusBtn:" destination="-1" eventType="touchUpInside" id="MIQ-bg-GtU"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdS-c9-hyB">
-                            <rect key="frame" x="148" y="2" width="80" height="30"/>
+                        <button opaque="NO" tag="15" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdS-c9-hyB">
+                            <rect key="frame" x="59" y="2" width="80" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="回购中">
                                 <color key="titleColor" red="0.1137254902" green="0.1450980392" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -44,8 +33,8 @@
                                 <action selector="selectStatusBtn:" destination="-1" eventType="touchUpInside" id="OnC-GS-Gbl"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGA-46-rDi">
-                            <rect key="frame" x="273" y="2" width="80" height="30"/>
+                        <button opaque="NO" tag="16" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGA-46-rDi">
+                            <rect key="frame" x="244" y="2" width="80" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="已回购">
                                 <color key="titleColor" red="0.1137254902" green="0.1450980392" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>

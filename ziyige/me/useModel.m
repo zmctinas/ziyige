@@ -14,10 +14,10 @@
 
 @implementation useModel
 
-- (void)registerAccountWithUsername:(NSString *)username password:(NSString *)password
+- (void)registerAccountWithUsername:(NSString *)username password:(NSString *)password invite:(NSString*)inviteCode
 {
     //异步注册账号
-    [self.webService userRegister:username password:password completion:^(BOOL isSuccess, NSString *message, id result) {
+    [self.webService userRegister:username password:password invite:inviteCode completion:^(BOOL isSuccess, NSString *message, id result) {
         if (isSuccess && message.length<1)
         {
             [self handleLoginSuccess:result];

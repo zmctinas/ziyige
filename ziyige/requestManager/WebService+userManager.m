@@ -9,14 +9,16 @@
 #import "WebService+userManager.h"
 #import "registerEntity.h"
 #import "UserEntity.h"
+#import "goodsResponseEntity.h"
+#import "inviteEntity.h"
 
 @implementation WebService (userManager)
 
--(void)userRegister:(NSString *)phone  password:(NSString *)password completion:(DMCompletionBlock)completion
+-(void)userRegister:(NSString *)phone  password:(NSString *)password invite:(NSString*)inviteCode completion:(DMCompletionBlock)completion
 {
     NSString *passwordEny = [Util md5:password];
     
-    NSDictionary* dic = @{@"phone_number":phone,@"password":passwordEny};
+    NSDictionary* dic = @{@"phone_number":phone,@"password":passwordEny,@"invite_people":inviteCode};
     [self postWithMethodName:USER_REGISTER data:dic success:^(id JSON) {
         if ([JSON isKindOfClass:[NSDictionary class]])
         {
@@ -227,6 +229,80 @@
                 {
                     completion(YES,nil,objDict);
                 }
+            }else if (status == ResponseStatusFailed)
+            {
+                NSDictionary *objDict = [JSON objectForKey:DATA];
+                NSString *message = SERVER_ERROE_MESSAGE;
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    message = [objDict objectForKey:RESULT_MESSAGE];
+                }
+                completion(YES,message,nil);
+            }
+        }
+    } failure:^(NSError *error, id JSON) {
+        completion(NO,[error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey],nil);
+    }];
+}
+
+-(void)getInviteCode:(NSString *)userId completion:(DMCompletionBlock)completion
+{
+    NSDictionary* dic = @{
+                      
+                      @"id":userId,
+                      
+                      };
+    [self postWithMethodName:GET_INVITE_CODE data:dic success:^(id JSON) {
+        if ([JSON isKindOfClass:[NSDictionary class]]) {
+            
+            NSDictionary *dataDic = [JSON objectForKey:DATA];
+            int status = [[dataDic objectForKey:STATUS] intValue];
+            if (status == ResponseStatusSuccess)
+            {
+                NSDictionary *objDict = [dataDic objectForKey:DATA];
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    completion(YES,nil,objDict);
+                }
+            }else if (status == ResponseStatusFailed)
+            {
+                NSDictionary *objDict = [JSON objectForKey:DATA];
+                NSString *message = SERVER_ERROE_MESSAGE;
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    message = [objDict objectForKey:RESULT_MESSAGE];
+                }
+                completion(YES,message,nil);
+            }
+        }
+    } failure:^(NSError *error, id JSON) {
+        completion(NO,[error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey],nil);
+    }];
+}
+
+-(void)getInviteList:(NSString *)inviteCode page:(NSString *)pages completion:(DMCompletionBlock)completion
+{
+    NSDictionary* dic = @{
+                      
+                      @"invite_code":inviteCode,
+                      @"pages":pages
+                      };
+    [self postWithMethodName:GET_INVITE_LIST data:dic success:^(id JSON) {
+        if ([JSON isKindOfClass:[NSDictionary class]]) {
+            
+            NSDictionary *dataDic = [JSON objectForKey:DATA];
+            int status = [[dataDic objectForKey:STATUS] intValue];
+            if (status == ResponseStatusSuccess)
+            {
+                
+                [goodsResponseEntity mj_setupObjectClassInArray:^NSDictionary *{
+                    return @{@"data" : NSStringFromClass([inviteEntity class]),};
+                }];
+                
+                goodsResponseEntity* response = [goodsResponseEntity mj_objectWithKeyValues:dataDic];
+                
+                completion(YES,nil,response);
+                
             }else if (status == ResponseStatusFailed)
             {
                 NSDictionary *objDict = [JSON objectForKey:DATA];

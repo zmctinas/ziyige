@@ -16,6 +16,7 @@
 @property(strong,nonatomic)goodsEntity* curEntity;
 
 @property(strong,nonatomic)NSMutableArray* detailSource;
+@property(strong,nonatomic)NSString* oldActId;
 
 -(void)getGoodsWithActid:(NSString*)actid;
 
@@ -26,5 +27,7 @@
 -(void)delCollect;
 
 -(void)getCollectList;
+
+-(void)searchGoods:(NSString*)keywords type:(NSString*)type cost:(NSString*)cost;
 
 @end

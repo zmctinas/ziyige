@@ -24,8 +24,8 @@
                 NSDictionary *objDict = [dataDic objectForKey:DATA];
                 if (![objDict isEqual:[NSNull null]])
                 {
-                    NSLog(@"%@",dataDic);
-                    completion(YES,nil,dataDic);
+                    
+                    completion(YES,nil,objDict);
                     
                 }
             }else if (status == ResponseStatusFailed)
@@ -253,7 +253,6 @@
                 NSDictionary *objDict = [dataDic objectForKey:DATA];
                 if (![objDict isEqual:[NSNull null]])
                 {
-                    NSLog(@"%@",objDict);
                     
                     completion(YES,nil,objDict);
                     
@@ -296,11 +295,7 @@
                     [goodsResponseEntity mj_setupObjectClassInArray:^NSDictionary *{
                         return @{@"data" : NSStringFromClass([goodsEntity class]),};
                     }];
-                    [goodsEntity mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-                        return @{
-                                 @"goods_price":@"total_fee",
-                                 };
-                    }];
+                    
                     goodsResponseEntity* response = [goodsResponseEntity mj_objectWithKeyValues:dataDic];
                     completion(YES,nil,response);
                 }
@@ -358,5 +353,112 @@
     }];
 }
 
+
+-(void)createPayTypeOrder:(NSString *)userId tradeNo:(NSString *)tradeNo payMent:(NSString *)payment completion:(DMCompletionBlock)completion
+{
+    NSDictionary* dic = @{
+                      
+                          @"user_id":userId,
+                          @"out_trade_no":tradeNo,
+                          @"pay_ment":payment
+                          };
+    [self postWithMethodName:CREATE_ORDER_PAYTYPE data:dic success:^(id JSON) {
+        if ([JSON isKindOfClass:[NSDictionary class]]) {
+            
+            NSDictionary *dataDic = [JSON objectForKey:DATA];
+            int status = [[dataDic objectForKey:STATUS] intValue];
+            if (status == ResponseStatusSuccess||status == ResponseStatusTebie)
+            {
+                NSDictionary *objDict = [dataDic objectForKey:DATA];
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    completion(YES,nil,objDict);
+                }
+            }else if (status == ResponseStatusFailed)
+            {
+                NSDictionary *objDict = [JSON objectForKey:DATA];
+                NSString *message = SERVER_ERROE_MESSAGE;
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    message = [objDict objectForKey:RESULT_MESSAGE];
+                }
+                completion(YES,message,nil);
+            }
+        }
+    } failure:^(NSError *error, id JSON) {
+        completion(NO,[error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey],nil);
+    }];
+}
+
+
+-(void)comfirmOrder:(NSString *)tradeNo completion:(DMCompletionBlock)completion
+{
+    NSDictionary* dic = @{
+                      
+                          @"out_trade_no":tradeNo,
+                          
+                          };
+    [self postWithMethodName:CONFIRM_ORDER data:dic success:^(id JSON) {
+        if ([JSON isKindOfClass:[NSDictionary class]]) {
+            
+            NSDictionary *dataDic = [JSON objectForKey:DATA];
+            int status = [[dataDic objectForKey:STATUS] intValue];
+            if (status == ResponseStatusSuccess)
+            {
+                NSDictionary *objDict = [dataDic objectForKey:DATA];
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    completion(YES,nil,objDict);
+                }
+            }else if (status == ResponseStatusFailed)
+            {
+                NSDictionary *objDict = [JSON objectForKey:DATA];
+                NSString *message = SERVER_ERROE_MESSAGE;
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    message = [objDict objectForKey:RESULT_MESSAGE];
+                }
+                completion(YES,message,nil);
+            }
+        }
+    } failure:^(NSError *error, id JSON) {
+        completion(NO,[error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey],nil);
+    }];
+}
+
+-(void)buyBackOrder:(NSString *)tradeNo completion:(DMCompletionBlock)completion
+{
+    NSDictionary* dic = @{
+                          
+                          @"out_trade_no":tradeNo,
+                          
+                          };
+    [self postWithMethodName:BUY_BACK_ORDER data:dic success:^(id JSON) {
+        if ([JSON isKindOfClass:[NSDictionary class]]) {
+            
+            NSDictionary *dataDic = [JSON objectForKey:DATA];
+            int status = [[dataDic objectForKey:STATUS] intValue];
+            if (status == ResponseStatusSuccess)
+            {
+                NSDictionary *objDict = [dataDic objectForKey:DATA];
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    completion(YES,nil,objDict);
+                }
+            }else if (status == ResponseStatusFailed)
+            {
+                NSDictionary *objDict = [JSON objectForKey:DATA];
+                NSString *message = SERVER_ERROE_MESSAGE;
+                if (![objDict isEqual:[NSNull null]])
+                {
+                    message = [objDict objectForKey:RESULT_MESSAGE];
+                }
+                completion(YES,message,nil);
+            }
+        }
+    } failure:^(NSError *error, id JSON) {
+        completion(NO,[error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey],nil);
+    }];
+}
 
 @end

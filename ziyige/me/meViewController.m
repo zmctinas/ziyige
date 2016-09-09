@@ -62,6 +62,10 @@
     
     if ([ValidationManager isLogin]) {
         [self setUI];
+    }else{
+        self.iconView.image = [UIImage imageNamed:@"icon_avator_default"];
+        [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"icon_btn_2"] forState:UIControlStateNormal];
+        [self.loginBtn setTitle:@"登录/注册" forState:UIControlStateNormal];
     }
     
 }
@@ -116,7 +120,7 @@
     [self.loginBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     
     if (self.user.photo.length>0) {
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASEURL,self.user.photo]] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageRefreshCached];
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASEURL,self.user.photo]] placeholderImage:[UIImage imageNamed:@"icon_avator_default"] options:SDWebImageRefreshCached];
     }
     
 }
@@ -192,9 +196,16 @@
 
 - (IBAction)myCountBtn:(UIButton *)sender {
     
-    myCountViewController* mycount = [[myCountViewController alloc]init];
-    mycount.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:mycount animated:YES];
+    if ([ValidationManager isLogin]) {
+        myCountViewController* mycount = [[myCountViewController alloc]init];
+        mycount.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:mycount animated:YES];
+    }else
+    {
+        loginViewController* login = [[loginViewController alloc]init];
+        login.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:login animated:YES];
+    }
     
 }
 
@@ -216,9 +227,16 @@
 
 - (IBAction)inviteCodeBtn:(UIButton *)sender {
     
-    inviteViewController* invite = [[inviteViewController alloc]init];
-    [self.navigationController pushViewController:invite animated:YES];
-    
+    if ([ValidationManager isLogin]) {
+        inviteViewController* invite = [[inviteViewController alloc]init];
+        invite.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:invite animated:YES];
+    }else
+    {
+        loginViewController* login = [[loginViewController alloc]init];
+        login.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:login animated:YES];
+    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate

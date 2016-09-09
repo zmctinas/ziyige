@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,18 +16,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebz-L0-Iog">
-                        <rect key="frame" x="18" y="8" width="284" height="27"/>
+                        <rect key="frame" x="18" y="8" width="285" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="ebz-L0-Iog" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7Ou-GF-TCW"/>
+                    <constraint firstItem="ebz-L0-Iog" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Hhz-Qv-4ha"/>
                     <constraint firstItem="ebz-L0-Iog" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="S0V-qZ-0ol"/>
-                    <constraint firstItem="ebz-L0-Iog" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-10" id="d0Q-HG-IeF"/>
+                    <constraint firstItem="ebz-L0-Iog" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="d0Q-HG-IeF"/>
                     <constraint firstItem="ebz-L0-Iog" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="pSH-tU-A8L"/>
                     <constraint firstItem="ebz-L0-Iog" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="vqV-2Q-pyk"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Hhz-Qv-4ha"/>
+                        <exclude reference="d0Q-HG-IeF"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>

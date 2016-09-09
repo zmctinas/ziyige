@@ -47,19 +47,25 @@
 {
     UserEntity* entity = [UserInfo info].currentUser;
     [self.webService setDefault:entity.userId addid:addid completion:^(BOOL isSuccess, NSString *message, id result) {
-        if (isSuccess) {
-            if (isSuccess) {
-                [[NSNotificationCenter defaultCenter]postNotificationName:SET_DEFAULT_AREA_NOTIFICATION object:result];
-            }
+        if (isSuccess&&!message) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:SET_DEFAULT_AREA_NOTIFICATION object:result];
+        }else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
         }
+        
     }];
 }
 
 -(void)editAddress:(addressEntity *)entity
 {
     [self.webService editAddress:entity completion:^(BOOL isSuccess, NSString *message, id result) {
-        if (isSuccess) {
+        
+        if (isSuccess&&!message) {
             [[NSNotificationCenter defaultCenter]postNotificationName:EDIT_AREA_NOTIFICATION object:result];
+        }else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
         }
     }];
 }

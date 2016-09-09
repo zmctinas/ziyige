@@ -24,6 +24,7 @@
 @implementation paintingsViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     _layOut = [[XMHFlowLayout alloc] init];
@@ -34,6 +35,11 @@
     
     [self registerCell];
     [self refresh];
+    
+    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [self refresh];
+    }];
+    self.collectionView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
     // Do any additional setup after loading the view from its nib.
 }
 

@@ -11,6 +11,11 @@
 #import "middleTableViewCell.h"
 #import "bottomTableViewCell.h"
 #import "preOrderViewController.h"
+#import "middleTwoTableViewCell.h"
+#import "ruleViewController.h"
+#import "imageShowViewController.h"
+#import "inviteShareViewController.h"
+#import "loginViewController.h"
 
 @interface goodsDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -21,6 +26,7 @@
 - (IBAction)goBackBtn:(UIButton *)sender;
 - (IBAction)collectBtn:(UIButton *)sender;
 - (IBAction)goBuyBtn:(UIButton *)sender;
+- (IBAction)shareBtn:(UIButton *)sender;
 
 
 @end
@@ -35,7 +41,7 @@
     
     [self.model getGoodsDetail];
     
-    [self addObserverForNotifications:@[GET_DETAIL_NOTIFICATION,ADD_COLLECT_NOTIFICATION,DEL_COLLECT_NOTIFICATION]];
+    [self addObserverForNotifications:@[GET_DETAIL_NOTIFICATION,ADD_COLLECT_NOTIFICATION,DEL_COLLECT_NOTIFICATION,RULE_DETAIL_NOTIFICATION,IMAGE_DETAIL_NOTIFICATION]];
     
     self.tableView.estimatedRowHeight = 80;
     
@@ -51,6 +57,9 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    
+    
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -78,6 +87,23 @@
     }else if ([notification.name isEqualToString:DEL_COLLECT_NOTIFICATION])
     {
         self.collectBtn.selected = NO;
+    }else if ([notification.name isEqualToString:RULE_DETAIL_NOTIFICATION])
+    {
+        ruleViewController* rule = [[ruleViewController alloc]init];
+        [self.navigationController pushViewController:rule animated:YES];
+    }else if ([notification.name isEqualToString:IMAGE_DETAIL_NOTIFICATION])
+    {
+        
+        detailEntity* entity = [self.model.detailSource firstObject];
+        
+        imageShowViewController* image = [[imageShowViewController alloc]init];
+        image.imageSource = entity.imageSource;
+        image.index = notification.object;
+        image.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        image.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:image animated:YES completion:^{
+            
+        }];
     }
 }
 
@@ -91,6 +117,9 @@
     
     UINib* bottom = [UINib nibWithNibName:@"bottomTableViewCell" bundle:nil];
     [_tableView registerNib:bottom forCellReuseIdentifier:@"bottomCell"];
+    
+    UINib* middleTwo = [UINib nibWithNibName:@"middleTwoTableViewCell" bundle:nil];
+    [_tableView registerNib:middleTwo forCellReuseIdentifier:@"middelTwoCell"];
 }
 
 #pragma mark - UITableViewDataSource
@@ -119,6 +148,13 @@
             break;
         case 2:
         {
+            middleTwoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"middelTwoCell" forIndexPath:indexPath];
+            cell.entity = self.model.detailSource[indexPath.row];
+            return cell;
+        }
+            break;
+        case 3:
+        {
             bottomTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"bottomCell" forIndexPath:indexPath];
             cell.entity = self.model.detailSource[indexPath.row];
             return cell;
@@ -141,22 +177,53 @@
 
 - (IBAction)collectBtn:(UIButton *)sender {
     
-    if (sender.selected) {
-        [self.model delCollect];
+    if ([ValidationManager isLogin]) {
+        
+        if (sender.selected) {
+            [self.model delCollect];
+        }else
+        {
+            [self.model addCollect];
+        }
     }else
     {
-        [self.model addCollect];
+        loginViewController* login = [[loginViewController alloc]init];
+        login.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:login animated:YES];
     }
     
 }
 
 - (IBAction)goBuyBtn:(UIButton *)sender {
     
-    preOrderViewController* preOrder = [[preOrderViewController alloc]init];
+    if ([ValidationManager isLogin]) {
     
-    preOrder.model.goodsEntity = self.model.curEntity;
+        preOrderViewController* preOrder = [[preOrderViewController alloc]init];
+        
+        preOrder.model.goodsEntity = self.model.curEntity;
+        
+        [self.navigationController pushViewController:preOrder animated:YES];
+    }else
+        {
+            loginViewController* login = [[loginViewController alloc]init];
+            login.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:login animated:YES];
+        }
     
-    [self.navigationController pushViewController:preOrder animated:YES];
+}
+
+- (IBAction)shareBtn:(UIButton *)sender {
+    
+    inviteShareViewController* alert = [[inviteShareViewController alloc]init];
+    
+    detailEntity* entity = [self.model.detailSource firstObject];
+    alert.yaoqingma = entity.goods_id;
+    alert.isDetail = YES;
+    alert.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    alert.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:alert animated:YES completion:^{
+        
+    }];
     
 }
 @end

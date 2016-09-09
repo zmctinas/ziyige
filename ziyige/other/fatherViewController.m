@@ -73,7 +73,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 - (void)addObserverForNotifications:(NSArray *)notificationNames
 {
     for (NSString *name in notificationNames)

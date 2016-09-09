@@ -12,7 +12,7 @@
 
 -(NSString*)price
 {
-    return [NSString stringWithFormat:@"估价：￥%@",self.goods_price];
+    return [NSString stringWithFormat:@"价格：￥%@",self.goods_price];
 }
 
 

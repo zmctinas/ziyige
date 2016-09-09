@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        self.userInteractionEnabled = YES;
     }
     return self;
 }
@@ -38,10 +38,14 @@
     UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
     imageView.image = showImage;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
+    imageView.userInteractionEnabled = YES;
+    imageView.tag = self.tag;
     [self addSubview:imageView];
     
-    [[SDWebImageDownloader sharedDownloader]downloadImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASEURL,imageUrl]] options:SDWebImageDownloaderLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchImage:)];
+    [imageView addGestureRecognizer:tap];
+    
+    [[SDWebImageDownloader sharedDownloader]downloadImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",IMAGE_BASEURL,lujing,zhongtu,imageUrl]] options:SDWebImageDownloaderLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         
     } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
 //        showImage = image;
@@ -52,6 +56,11 @@
     }];
     
     return self;
+}
+
+-(void)touchImage:(UITapGestureRecognizer*)tap
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:IMAGE_DETAIL_NOTIFICATION object:[NSNumber numberWithInteger:self.tag - 100]];
 }
 
 @end

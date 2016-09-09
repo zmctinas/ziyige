@@ -12,5 +12,6 @@
 @interface salerRecordViewController : fatherViewController
 
 @property(strong,nonatomic)orderModel* model;
+@property(assign,nonatomic)NSInteger headerIndex;
 
 @end

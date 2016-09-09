@@ -52,7 +52,7 @@
     {
         self.entity.distribution = @"self_take";
     }
-    
+    NSLog(@"%@",self.entity.distribution);
     
     [self.delegate changeUI];
     [self dismissViewControllerAnimated:YES completion:^{

@@ -16,7 +16,7 @@
  *  @param actid      商品种类id
  *  @param completion 
  */
--(void)requestGoodsWithAct:(NSString*)actid completion:(DMCompletionBlock)completion;
+-(void)requestGoodsWithAct:(NSString*)actid pages:(NSString*)pages completion:(DMCompletionBlock)completion;
 
 /**
  *   请求商品列表
@@ -73,5 +73,21 @@
 - (void)addMessage:(NSString*)userid
            content:(NSString*)content
         completion:(DMCompletionBlock)completion;
+
+
+/**
+ *  搜索
+ *
+ *  @param keywords   关键词
+ *  @param pages      页数
+ *  @param type       价格顺序
+ *  @param cost       价格筛选
+ *  @param completion
+ */
+- (void)searchGoods:(NSString*)keywords
+              pages:(NSString*)pages
+               type:(NSString*)type
+               cost:(NSString*)cost
+         completion:(DMCompletionBlock)completion;
 
 @end

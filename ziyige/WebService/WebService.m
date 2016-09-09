@@ -147,7 +147,7 @@ NSString *const STATUS          = @"code";
         //        }]
         
         [self GET:path parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
-            
+            NSLog(@"%@",downloadProgress);
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)task.response;
@@ -176,7 +176,7 @@ NSString *const STATUS          = @"code";
             }
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            
+            NSLog(@"%@",task.response);
             NSLog(@"%@",error.localizedFailureReason);
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:error.userInfo];

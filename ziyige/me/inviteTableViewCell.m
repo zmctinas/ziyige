@@ -21,4 +21,17 @@
     // Configure the view for the selected state
 }
 
+-(void)setEntity:(inviteEntity *)entity
+{
+    _entity = entity;
+    
+    _nameLabel.text = entity.user_name;
+    _photoLabel.text = entity.phone_number;
+    
+    _iconView.layer.masksToBounds = YES;
+    _iconView.layer.cornerRadius = _iconView.frame.size.width/2;
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASEURL,entity.photo]] placeholderImage:[UIImage imageNamed:@"icon_avator_default"]];
+    
+}
+
 @end

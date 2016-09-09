@@ -27,11 +27,18 @@
 
 -(void)addTrade:(orderEntity*)entity;
 
-- (void)getDefAddress;
+-(void)getDefAddress;
 
 -(void)getTradeList:(NSString*)status;
 
 -(void)getTradeDetail:(NSString*)trade_no;
+
+-(void)createPayTypeOrder:(NSString*)tradeNo
+                  payMent:(NSString*)payment;
+
+-(void)comfirmOrder:(NSString*)tradeNo;
+
+-(void)buyBackOrder:(NSString*)tradeNo;
 
 
 @end

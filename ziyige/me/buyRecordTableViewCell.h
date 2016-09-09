@@ -13,6 +13,8 @@
 @interface buyRecordTableViewCell : UITableViewCell
 
 @property(strong,nonatomic)goodsEntity* entity;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

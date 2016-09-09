@@ -12,6 +12,7 @@
 @interface setViewController ()
 
 
+- (IBAction)getOutBtn:(UIButton *)sender;
 
 - (IBAction)feedBackBtn:(UIButton *)sender;
 
@@ -48,6 +49,13 @@
 //}
 
 #pragma mark - xib
+
+- (IBAction)getOutBtn:(UIButton *)sender {
+    
+    [[UserInfo info] clear];
+    [ValidationManager setLoginStatus:NO];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (IBAction)feedBackBtn:(UIButton *)sender {
     

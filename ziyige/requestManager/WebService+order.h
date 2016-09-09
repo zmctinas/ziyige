@@ -105,9 +105,38 @@
             completion:(DMCompletionBlock)completion;
 
 
+/**
+ *  支付下单
+ *
+ *  @param userId     uid
+ *  @param tradeNo    订单号
+ *  @param payment    支付方式
+ *  @param completion 
+ */
+-(void)createPayTypeOrder:(NSString*)userId
+                  tradeNo:(NSString*)tradeNo
+                  payMent:(NSString*)payment
+               completion:(DMCompletionBlock)completion;
 
 
+/**
+ *  确认收货
+ *
+ *  @param tradeNo    订单号
+ *  @param completion 
+ */
+-(void)comfirmOrder:(NSString*)tradeNo
+         completion:(DMCompletionBlock)completion;
 
+
+/**
+ *  申请回购
+ *
+ *  @param tradeNo    订单号
+ *  @param completion 
+ */
+-(void)buyBackOrder:(NSString*)tradeNo
+         completion:(DMCompletionBlock)completion;
 
 
 @end

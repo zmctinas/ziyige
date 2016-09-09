@@ -11,10 +11,8 @@
 
 #import "addressModel.h"
 
-@interface editAddressViewController ()
-{
-    BOOL isCreate;
-}
+@interface editAddressViewController ()<UITextViewDelegate>
+
 
 @property(strong,nonatomic)addressModel* model;
 
@@ -44,8 +42,9 @@
     
     self.navigationItem.rightBarButtonItem = self.reightItem;
     
-    if (self.model) {
+    if (_entity) {
         [self setUpUI];
+        _isCreate = YES;
     }
     
     [self addObserverForNotifications:@[SELECT_AREA_NOTIFICATION,ADD_AREA_NOTIFICATION,EDIT_AREA_NOTIFICATION]];
@@ -88,22 +87,38 @@
 
 -(void)touchRightItem:(UIButton*)sender
 {
-    if (isCreate) {
-        UserEntity* entity = [UserInfo info].currentUser;
+    UserEntity* entity = [UserInfo info].currentUser;
+    if (_isCreate) {
+        
         self.entity.user_id = entity.userId;
         self.entity.link_name = _addressNameLabel.text;
         self.entity.tel_num = _addressPhoneLabel.text;
         self.entity.address = _addtessDetialView.text;
         
-        [self.model addAddress:self.entity];
+        [self.model editAddress:self.entity];
     }else
     {
-//        self.entity.user_id = entity.userId;
-        self.entity.link_name = _addressNameLabel.text;
-        self.entity.tel_num = _addressPhoneLabel.text;
-        self.entity.address = _addtessDetialView.text;
+        if (_addtessDetialView.text.integerValue) {
+            NSLog(@"fawe");
+        }
+        if (_addressPhoneLabel.text.integerValue) {
+            NSLog(@"1231");
+        }
+        if (_addressNameLabel.text.integerValue) {
+            NSLog(@"we332");
+        }
         
-        [self.model editAddress:self.entity];
+        self.entity.user_id = entity.userId;
+        if (_addressNameLabel.text.length>0&&_addressPhoneLabel.text.length>0&&_addtessDetialView.text.length>0) {
+            self.entity.link_name = _addressNameLabel.text;
+            self.entity.tel_num = _addressPhoneLabel.text;
+            self.entity.address = _addtessDetialView.text;
+            
+            [self.model addAddress:self.entity];
+        }else{
+            [self.view makeToast:@"请输入地址信息"];
+        }
+        
         
     }
     
@@ -137,9 +152,26 @@
 {
     if (!_entity) {
         _entity = [[addressEntity alloc]init];
-        isCreate = YES;
     }
     return _entity;
+}
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    
+    if ([textView.text isEqualToString:@"请输入详情地址"]) {
+        textView.text = @"";
+    }
+    return YES;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"请输入详情地址";
+    }
 }
 
 #pragma mark - xib

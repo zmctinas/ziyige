@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,7 +18,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pX-Kj-GjB">
-                    <rect key="frame" x="0.0" y="199" width="160" height="38"/>
+                    <rect key="frame" x="0.0" y="204" width="160" height="38"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="38" id="gBz-1c-ztG"/>
                     </constraints>
@@ -27,10 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="估价：9999999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnj-VY-V2x">
-                    <rect key="frame" x="0.0" y="245" width="160" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="Rvv-73-COh"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="250" width="160" height="13"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -39,6 +36,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Fnj-VY-V2x" secondAttribute="trailing" id="0fI-fv-iLg"/>
+                <constraint firstAttribute="bottom" secondItem="Fnj-VY-V2x" secondAttribute="bottom" constant="3" id="0mg-Ur-ooB"/>
                 <constraint firstItem="ryx-Ng-tmx" firstAttribute="leading" secondItem="ubM-Jp-ZtM" secondAttribute="leading" id="9Fp-BN-1ME"/>
                 <constraint firstItem="Fnj-VY-V2x" firstAttribute="top" secondItem="9pX-Kj-GjB" secondAttribute="bottom" constant="8" id="UDZ-wX-krt"/>
                 <constraint firstAttribute="trailing" secondItem="9pX-Kj-GjB" secondAttribute="trailing" id="Wy6-Xe-v2g"/>
@@ -46,12 +44,13 @@
                 <constraint firstAttribute="trailing" secondItem="ryx-Ng-tmx" secondAttribute="trailing" id="grQ-VV-UUu"/>
                 <constraint firstItem="Fnj-VY-V2x" firstAttribute="leading" secondItem="ubM-Jp-ZtM" secondAttribute="leading" id="kyC-U6-sCD"/>
                 <constraint firstItem="9pX-Kj-GjB" firstAttribute="leading" secondItem="ubM-Jp-ZtM" secondAttribute="leading" id="oPb-mY-FkT"/>
-                <constraint firstItem="9pX-Kj-GjB" firstAttribute="top" secondItem="ryx-Ng-tmx" secondAttribute="bottom" id="q6j-bZ-XvN"/>
+                <constraint firstItem="9pX-Kj-GjB" firstAttribute="top" secondItem="ryx-Ng-tmx" secondAttribute="bottom" constant="5" id="q6j-bZ-XvN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="iconView" destination="ryx-Ng-tmx" id="Bkw-iS-pPY"/>
                 <outlet property="imageViewHeight" destination="2EJ-u7-R7G" id="SHf-rH-9OE"/>
+                <outlet property="labelHeight" destination="gBz-1c-ztG" id="Pw9-l2-LrC"/>
                 <outlet property="priceLabel" destination="Fnj-VY-V2x" id="our-cH-58a"/>
                 <outlet property="titleLabel" destination="9pX-Kj-GjB" id="jJz-aX-82l"/>
             </connections>

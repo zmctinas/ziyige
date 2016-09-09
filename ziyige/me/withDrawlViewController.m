@@ -51,7 +51,7 @@
     
     selectIndex = 10;
     
-    self.navigationItem.rightBarButtonItem = self.rightItem;
+//    self.navigationItem.rightBarButtonItem = self.rightItem;
     
     [self refreshUI];
     // Do any additional setup after loading the view from its nib.
@@ -128,8 +128,8 @@
     
     
 //    NSLog(@"---%@  ===%@ ",_moneyField.text,_remainderMoney);
-//    if ([_moneyField.text floatValue]>0&&[_moneyField.text floatValue]<=[_remainderMoney floatValue]) {
-//        
+    if ([_moneyField.text floatValue]>0&&[_moneyField.text floatValue]<=[_remainderMoney floatValue]) {
+//
 //        tipsViewController* sign = [[tipsViewController alloc]init];
 //        
 //        sign.delegate = self;
@@ -150,13 +150,14 @@
             {
                 aliWithdrawalViewController* ali = [[aliWithdrawalViewController alloc]init];
 //                ali.messageDic = dic;
+                ali.money = self.moneyField.text;
                 [self.navigationController pushViewController:ali animated:YES];
             }
                 break;
             case 11:
             {
                 weixinWitdrawalTypeViewController* ali = [[weixinWitdrawalTypeViewController alloc]init];
-//                ali.messageDic = dic;
+                ali.money = self.moneyField.text;
                 [self.navigationController pushViewController:ali animated:YES];
             }
                 break;
@@ -164,10 +165,11 @@
             default:
                 break;
         }
-//    }else
-//    {
-//        [self.view makeToast:@"请输入正确的金额"];
-//    }
+    }
+     else
+    {
+        [self.view makeToast:@"请输入正确的金额"];
+    }
     
     
 

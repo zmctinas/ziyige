@@ -17,12 +17,16 @@
 @property(copy,nonatomic)NSString* thumb_goods_url;
 @property(copy,nonatomic)NSString* height;
 @property(copy,nonatomic)NSString* width;
+@property(copy,nonatomic)NSString* add_time;
+@property(copy,nonatomic)NSString* amount;
 
 @property(copy,nonatomic)NSString* out_trade_no;
 
 @property(copy,nonatomic)NSString* status;
 
 @property(copy,nonatomic)NSString* price;
+
+@property(copy,nonatomic)NSString* total_fee;
 
 @property(assign,nonatomic)CGFloat exceptHeight;
 

@@ -10,4 +10,6 @@
 
 @interface withRecordViewController : fatherViewController
 
+@property(nonatomic)BOOL isRootPush;
+
 @end

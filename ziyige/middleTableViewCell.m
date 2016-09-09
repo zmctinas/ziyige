@@ -26,8 +26,9 @@
     _entity = entity;
     
     self.nameLabel.text = _entity.goods_name;
-    self.priceLabel.text = [NSString stringWithFormat:@"估价：￥%@",_entity.goods_price];
-    
+    self.priceLabel.text = [NSString stringWithFormat:@"价格：￥%@",_entity.goods_price];
+    self.specificationLabel.text = [NSString stringWithFormat:@"规格：%@",_entity.specifications];
+    self.marketLabel.text = [NSString stringWithFormat:@"市场参考价：￥%@",entity.market_price];
 }
 
 @end

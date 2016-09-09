@@ -17,7 +17,8 @@ typedef void (^OnBizSuccess)(id result);//Completion Block
 
 typedef enum ResponseStatus {
     ResponseStatusFailed              = 0,
-    ResponseStatusSuccess             = 1
+    ResponseStatusSuccess             = 1,
+    ResponseStatusTebie               = 2
 }ResponseStatus;
 
 /**

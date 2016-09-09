@@ -22,6 +22,9 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - Toast (3.0)
+  - ZXingObjC (3.1.0):
+    - ZXingObjC/All (= 3.1.0)
+  - ZXingObjC/All (3.1.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -31,6 +34,7 @@ DEPENDENCIES:
   - Reachability (~> 3.2)
   - SDWebImage
   - Toast (~> 3.0)
+  - ZXingObjC (~> 3.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -40,7 +44,8 @@ SPEC CHECKSUMS:
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
+  ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-PODFILE CHECKSUM: 63f40c1d8dad4aa34fb1a9246b43b71cf9369da6
+PODFILE CHECKSUM: 300ec529c07c537374bea67a235f27c4c77c81e8
 
 COCOAPODS: 1.0.0

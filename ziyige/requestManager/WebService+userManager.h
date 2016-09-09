@@ -19,6 +19,7 @@
  */
 - (void)userRegister:(NSString *)phone
             password:(NSString *)password
+              invite:(NSString*)inviteCode
           completion:(DMCompletionBlock)completion;
 
 /**
@@ -69,5 +70,27 @@
  */
 -(void)changePhoto:(UIImage*)photo
         completion:(DMCompletionBlock)completion;
+
+
+/**
+ *  获取邀请码
+ *
+ *  @param userId     uid
+ *  @param completion
+ */
+-(void)getInviteCode:(NSString*)userId
+          completion:(DMCompletionBlock)completion;
+
+/**
+ *  获取邀请列表
+ *
+ *  @param inviteCode 邀请码
+ *  @param pages      分页
+ *  @param completion 
+ */
+-(void)getInviteList:(NSString*)inviteCode
+                page:(NSString*)pages
+          completion:(DMCompletionBlock)completion;
+
 
 @end

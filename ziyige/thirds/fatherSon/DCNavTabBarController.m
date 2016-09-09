@@ -182,7 +182,7 @@
     sender.selected = YES;
     
     UIImageView* oldimageView = (UIImageView*)[self.oldBtn viewWithTag:299];
-    oldimageView.image = [UIImage imageNamed:@""];
+    oldimageView.image = [UIImage imageNamed:@"icon_avator_default"];
     UIImage * image = [UIImage imageNamed:@"icon_btn_menu"];
     UIImageView* imageView = (UIImageView*)[sender viewWithTag:299];
     imageView.image = image;

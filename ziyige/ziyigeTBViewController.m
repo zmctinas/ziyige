@@ -20,10 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray* controlArr = @[@"main",@"news",@"me"];
-    NSArray* titleArr = @[@"首页",@"咨询",@"我"];
-    NSArray* imageArr = @[@"icon_home",@"icon_msg",@"icon_me"];
-    NSArray* selectImageArr = @[@"icon_home_pressed",@"icon_msg_pressed",@"icon_me_pressed"];
+    NSArray* controlArr = @[@"main",@"me"];
+    NSArray* titleArr = @[@"首页",@"我的"];
+    NSArray* imageArr = @[@"icon_home",@"icon_me"];
+    NSArray* selectImageArr = @[@"icon_home_pressed",@"icon_me_pressed"];
     NSMutableArray* controls = [NSMutableArray array];
     
     for (int i = 0 ; i < controlArr.count ; i++) {
@@ -33,7 +33,7 @@
         UIViewController* VC = [[controlClass alloc]init];
         VC.title = name;
         UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:VC];
-        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"icon_bg_nav"] forBarMetrics:UIBarMetricsDefault];
+        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"icon_bg_nav"]  forBarMetrics:UIBarMetricsDefault];
         
         UITabBarItem* tabBarItem = [[UITabBarItem alloc]initWithTitle:titleArr[i] image:[[UIImage imageNamed:imageArr[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:selectImageArr[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         
@@ -46,7 +46,8 @@
     self.viewControllers = controls;
     
     UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2)];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
     imageView.image = [UIImage imageNamed:@"icon_line"];
     [self.tabBar addSubview:imageView];
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -80,6 +80,12 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="cashLabel" destination="vH9-bw-j79" id="uw2-94-5Ch"/>
+                <outlet property="dateLabel" destination="tnZ-0i-Inw" id="0VH-Ic-3yh"/>
+                <outlet property="paymentLabel" destination="dJA-ed-RDy" id="7nr-Ax-meu"/>
+                <outlet property="statusLabel" destination="aKO-6f-YYL" id="Mtb-NQ-Vts"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

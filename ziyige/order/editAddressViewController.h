@@ -11,7 +11,7 @@
 
 @interface editAddressViewController : fatherViewController
 
-
+@property(assign,nonatomic)BOOL isCreate;
 @property(strong,nonatomic)addressEntity* entity;
 
 @end

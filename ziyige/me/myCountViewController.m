@@ -17,8 +17,6 @@
 
 @property(strong,nonatomic)UIBarButtonItem* rightItem;
 
-
-
 - (IBAction)collectBtn:(UIButton *)sender;
 - (IBAction)buyRecordBtn:(UIButton *)sender;
 - (IBAction)saleRecordBtn:(UIButton *)sender;
@@ -71,15 +69,12 @@
     return _rightItem;
 }
 
-
-
 #pragma mark - xib
 
 - (IBAction)collectBtn:(UIButton *)sender {
     
     collectViewController* collect = [[collectViewController alloc]init];
     [self.navigationController pushViewController:collect animated:YES];
-    
     
 }
 

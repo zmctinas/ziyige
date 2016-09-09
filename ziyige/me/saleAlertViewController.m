@@ -12,8 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *saleAlertView;
 
-
-
 - (IBAction)okBtn:(UIButton *)sender;
 
 @end

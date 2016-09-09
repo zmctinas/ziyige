@@ -24,8 +24,11 @@
 
 -(void)getGoodsWithActid:(NSString*)actid
 {
-    
-    [self.webService requestGoodsWithAct:actid completion:^(BOOL isSuccess, NSString *message, id result) {
+    if (self.oldActId.integerValue != actid.integerValue) {
+        self.pages = 1;
+        self.oldActId = actid;
+    }
+    [self.webService requestGoodsWithAct:actid pages:[NSString stringWithFormat:@"%ld",self.pages] completion:^(BOOL isSuccess, NSString *message, id result) {
         
         if (isSuccess)
         {
@@ -54,7 +57,14 @@
 -(void)getGoodsDetail
 {
     UserEntity* entity = [UserInfo info].currentUser;
-    [self.webService getGoodsDetail:entity.userId goodsID:self.curEntity.goods_id completion:^(BOOL isSuccess, NSString *message, id result) {
+    NSString* userid ;
+    if (entity.userId) {
+        userid = entity.userId;
+    }else
+    {
+        userid = @"";
+    }
+    [self.webService getGoodsDetail:userid goodsID:self.curEntity.goods_id completion:^(BOOL isSuccess, NSString *message, id result) {
         if (isSuccess) {
             NSDictionary* dic = result;
             NSLog(@"%@",dic);
@@ -66,6 +76,7 @@
             }
             detailEntity* response = [detailEntity mj_objectWithKeyValues:dic];
             response.imageSource = imageArr;
+            [self.detailSource addObject:response];
             [self.detailSource addObject:response];
             [self.detailSource addObject:response];
             [self.detailSource addObject:response];
@@ -122,6 +133,35 @@
         }
     }];
 }
+
+
+-(void)searchGoods:(NSString*)keywords type:(NSString *)type cost:(NSString *)cost
+{
+    [self.webService searchGoods:keywords pages:[NSString stringWithFormat:@"%ld",self.pages] type:type cost:cost completion:^(BOOL isSuccess, NSString *message, id result) {
+        if (isSuccess&&!message) {
+            goodsResponseEntity*  response = result;
+            if (self.pages == 1)
+            {
+                [self.goodsSource removeAllObjects];
+            }
+            if ([response.data count])
+            {
+                [self.goodsSource addObjectsFromArray:response.data];
+            }
+            BOOL noMoreData = YES;
+            if (self.pages < response.pages)
+            {
+                noMoreData = NO;
+                self.pages++;
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:GET_SEARCH_LIST_NOTIFICATION object:@(noMoreData)];
+        }else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
+        }
+    }];
+}
+
 
 -(NSMutableArray*)detailSource
 {

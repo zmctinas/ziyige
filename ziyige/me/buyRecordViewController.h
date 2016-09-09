@@ -13,4 +13,6 @@
 
 @property(strong,nonatomic)orderModel* model;
 
+@property(nonatomic)BOOL isRootPush;
+
 @end

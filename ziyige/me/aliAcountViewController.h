@@ -7,9 +7,12 @@
 //
 
 #import "fatherViewController.h"
+#import "withDrawlModel.h"
 
 @interface aliAcountViewController : fatherViewController
 
 @property(strong,nonatomic)NSDictionary* messageDic;
+@property(strong,nonatomic)NSString* money;
+@property(strong,nonatomic)withDrawlModel* model;
 
 @end

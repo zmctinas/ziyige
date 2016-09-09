@@ -11,5 +11,6 @@
 @interface aliWithdrawalViewController : fatherViewController
 
 @property(strong,nonatomic)NSDictionary* messageDic;
+@property(strong,nonatomic)NSString* money;
 
 @end

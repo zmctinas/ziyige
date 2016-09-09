@@ -12,4 +12,6 @@
 
 @property(strong,nonatomic)NSString* yaoqingma;
 
+@property(assign,nonatomic)BOOL isDetail;
+
 @end

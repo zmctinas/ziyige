@@ -12,13 +12,16 @@
 @interface registerViewController ()
 {
     NSNumber* code;
+    NSInteger Dnum;
 }
 
 @property(strong,nonatomic)useModel* model;
 
+@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 @property (weak, nonatomic) IBOutlet UITextField *userNameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *VCodeLabel;
 @property (weak, nonatomic) IBOutlet UITextField *passwordLabel;
+@property (weak, nonatomic) IBOutlet UITextField *inviteLabel;
 - (IBAction)getCodeBtn:(UIButton *)sender;
 - (IBAction)registerBtn:(UIButton *)sender;
 
@@ -28,6 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"注册";
     
     [self addObserverForNotifications:@[SEND_CODE_NOTIFICATION,REGISTER_NOTIFICATION]];
     
@@ -74,6 +79,21 @@
     return ret;
 }
 
+-(void)timeDownBtn
+{
+    self.codeBtn.enabled = NO;
+    if (Dnum) {
+        [self.codeBtn setTitle:[NSString stringWithFormat:@"%lds",Dnum--] forState:UIControlStateDisabled];
+        [self performSelector:@selector(timeDownBtn) withObject:nil afterDelay:1];
+    }else
+    {
+        self.codeBtn.enabled = YES;
+        [self.codeBtn setTitle:@"获取" forState:UIControlStateNormal];
+    }
+    
+    
+}
+
 #pragma mark - getter
 
 -(useModel*)model
@@ -90,6 +110,8 @@
     
     if (![self isEmpty]) {
         [self.model getVCodeWithPhone:_userNameLabel.text];
+        Dnum = 60;
+        [self timeDownBtn];
     }else
     {
         [self.view makeToast:@"手机号不正确"];
@@ -101,7 +123,7 @@
     
     if (_VCodeLabel.text.integerValue == code.integerValue) {
         if (_passwordLabel.text.length>=6) {
-            [self.model registerAccountWithUsername:_userNameLabel.text password:_passwordLabel.text];
+            [self.model registerAccountWithUsername:_userNameLabel.text password:_passwordLabel.text invite:self.inviteLabel.text];
         }else
         {
             [self.view makeToast:@"密码至少6位"];

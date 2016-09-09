@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,19 +15,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="112"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lN0-T6-r7g">
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5I2-ku-HQf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="112"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lN0-T6-r7g">
                         <rect key="frame" x="18" y="8" width="294" height="39"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.11372549019607843" green="0.14509803921568626" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqQ-cX-4QA">
-                        <rect key="frame" x="18" y="55" width="294" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqQ-cX-4QA">
+                        <rect key="frame" x="18" y="55" width="176" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.93725490196078431" green="0.058823529411764705" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="子宜阁官方藏品   可回购的收益" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lya-zc-wtk">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mY2-6W-mWu">
+                        <rect key="frame" x="202" y="55" width="110" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="HLs-Ju-YRE"/>
+                            <constraint firstAttribute="height" constant="17" id="Rxg-6I-z4E"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.57647058823529407" green="0.61960784313725492" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lya-zc-wtk">
                         <rect key="frame" x="18" y="80" width="294" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.32549019607843138" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
@@ -36,21 +50,35 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="lya-zc-wtk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="4Me-iH-4nT"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="5I2-ku-HQf" secondAttribute="bottom" constant="-8" id="6hJ-cb-7Xi"/>
                     <constraint firstItem="lya-zc-wtk" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="7ED-41-dhL"/>
+                    <constraint firstItem="mY2-6W-mWu" firstAttribute="leading" secondItem="cqQ-cX-4QA" secondAttribute="trailing" constant="8" id="7Rz-fc-xoB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5I2-ku-HQf" secondAttribute="trailing" constant="-8" id="8xp-mf-oaD"/>
                     <constraint firstItem="cqQ-cX-4QA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="95S-5r-Xae"/>
+                    <constraint firstItem="5I2-ku-HQf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Bzg-Kg-NFu"/>
                     <constraint firstAttribute="bottomMargin" secondItem="lya-zc-wtk" secondAttribute="bottom" constant="7" id="CX9-aH-Jv3"/>
                     <constraint firstItem="lN0-T6-r7g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="OIH-RC-2Sb"/>
+                    <constraint firstItem="mY2-6W-mWu" firstAttribute="top" secondItem="lN0-T6-r7g" secondAttribute="bottom" constant="8" id="QyQ-Un-Ns2"/>
                     <constraint firstItem="lya-zc-wtk" firstAttribute="top" secondItem="cqQ-cX-4QA" secondAttribute="bottom" constant="8" id="UAG-el-KjE"/>
                     <constraint firstItem="lN0-T6-r7g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="bXk-wB-nOd"/>
                     <constraint firstItem="lN0-T6-r7g" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="cBy-gS-Fam"/>
                     <constraint firstItem="cqQ-cX-4QA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="fZt-OT-VDS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mY2-6W-mWu" secondAttribute="trailing" id="h0M-gE-XTm"/>
+                    <constraint firstItem="5I2-ku-HQf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="np0-Qp-Lki"/>
                     <constraint firstItem="cqQ-cX-4QA" firstAttribute="top" secondItem="lN0-T6-r7g" secondAttribute="bottom" constant="8" id="qXj-Ky-FRP"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="fZt-OT-VDS"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="marketLabel" destination="lya-zc-wtk" id="cdw-Bv-qbH"/>
                 <outlet property="nameLabel" destination="lN0-T6-r7g" id="WCf-LG-sj7"/>
                 <outlet property="priceLabel" destination="cqQ-cX-4QA" id="Bft-ZG-1vJ"/>
+                <outlet property="specificationLabel" destination="mY2-6W-mWu" id="2sN-wz-OLm"/>
             </connections>
             <point key="canvasLocation" x="453" y="336.5"/>
         </tableViewCell>

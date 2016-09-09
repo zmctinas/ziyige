@@ -10,7 +10,12 @@
 #define URLConstant_h
 
 
+
 static NSString * const BASEURL = @"http://www.daimang.net.cn/"; //BaseURL
+static NSString * const lujing = @"Data/images/"; //BaseURL
+static NSString * const suolue = @"360px/"; //BaseURL
+static NSString * const zhongtu = @"720px/"; //BaseURL
+static NSString * const origin = @"origin/"; //BaseURL
 
 #if DEBUG
 static NSString * const PATH    = @"Public/ziyige/index.php";//只有一个接口
@@ -46,6 +51,8 @@ static NSString * const CHANGE_NICKNAME               = @"User.UpdateUserName";/
 
 static NSString * const GOODS_LIST                    = @"Goods.Index";/**< 商品列表*/
 
+static NSString * const SEARCH_GOODS_LIST             = @"Goods.Index";/**< 搜索商品列表*/
+
 static NSString * const GOODS_DETAIL                  = @"Goods.GetGoodsInfo";/**< 商品详情*/
 
 static NSString * const SEND_CODE                     = @"User.SendCode";/**< 发送验证码*/
@@ -76,5 +83,28 @@ static NSString * const PAY_ORDER                     = @"pay.Unifiedorder";/**<
 static NSString * const GET_COLLECT_LIST              = @"Collect.GetCollectList";/**< 获取收藏列表*/
 
 static NSString * const ADD_MESSAGE                   = @"Message.AddMessage";/**< 获取收藏列表*/
+
+static NSString * const SEARCH_LIST                   = @"Search.Search";/**< 获取收藏列表*/
+
+static NSString * const GET_MONEY_MESSAGE             = @"Money.Index";/**< 获取用户余额信息*/
+
+static NSString * const USER_WITHDRAWL                = @"Money.TakeCash";/**< 用户提现接口*/
+
+static NSString * const USER_SETPAYMENT                = @"User.SetPayment";/**< 设置提现账户接口*/
+
+static NSString * const GET_USER_PAYMENT                = @"User.GetPayment";/**< 获取提现账户接口*/
+
+static NSString * const GET_CASH_LIST                = @"Take.GetTakeCashList";/**< 获取提现列表接口*/
+
+static NSString * const GET_INVITE_CODE                = @"User.GetInviteCode";/**< 获取邀请码*/
+
+static NSString * const GET_INVITE_LIST                = @"User.GetInvitePeopleList";/**< 获取邀请列表*/
+
+static NSString * const CREATE_ORDER_PAYTYPE            = @"pay.Unifiedorder";/**< 下单*/
+
+static NSString * const CONFIRM_ORDER                  = @"Trade.ConfirmOrder";/**< 确认收货*/
+
+static NSString * const BUY_BACK_ORDER                  = @"Trade.ApplicationBack";/**< 申请回购*/
+
 
 #endif /* URLConstant_h */

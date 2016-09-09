@@ -12,4 +12,5 @@ pod 'Reachability', '~> 3.2'
 pod 'IQKeyboardManager'
 pod 'MJExtension'
 pod 'Toast', '~> 3.0'
+pod 'ZXingObjC', '~> 3.0'
 end

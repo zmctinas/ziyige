@@ -17,7 +17,7 @@
  *  @param username 用户名
  *  @param password 密码
  */
-- (void)registerAccountWithUsername:(NSString *)username password:(NSString *)password;
+- (void)registerAccountWithUsername:(NSString *)username password:(NSString *)password invite:(NSString*)inviteCode;
 
 /**
  *  登录账号

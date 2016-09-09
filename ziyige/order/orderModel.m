@@ -20,7 +20,6 @@
     return self;
 }
 
-
 -(void)addTrade:(orderEntity *)entity
 {
     NSDictionary* dic = [entity mj_keyValues];
@@ -41,14 +40,18 @@
 {
     UserEntity* entity = [UserInfo info].currentUser;
     [self.webService getDefaultAddress:entity.userId completion:^(BOOL isSuccess, NSString *message, id result) {
-        if (isSuccess) {
+        if (isSuccess&&!message) {
             
             [addressEntity mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
                 return @{@"addid":@"id"};
             }];
             self.addEntity = [addressEntity mj_objectWithKeyValues:result];
             [[NSNotificationCenter defaultCenter]postNotificationName:GET_DEFAULT_AREA_NOTIFICATION object:result];
+        }else{
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
         }
+        
     }];
 }
 
@@ -89,7 +92,44 @@
     [self.webService getOrderDetail:trade_no completion:^(BOOL isSuccess, NSString *message, id result) {
         if (isSuccess&&!message) {
             self.detailEntity = [orderDetialModel mj_objectWithKeyValues:result];
-            [[NSNotificationCenter defaultCenter] postNotificationName:GET_ORDER_LIST_NOTIFICATION object:message];
+            [[NSNotificationCenter defaultCenter] postNotificationName:GET_ORDER_LIST_NOTIFICATION object:result];
+        }else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
+        }
+    }];
+}
+
+-(void)createPayTypeOrder:(NSString*)tradeNo payMent:(NSString*)payment
+{
+    UserEntity* entity = [UserInfo info].currentUser;
+    [self.webService createPayTypeOrder:entity.userId tradeNo:tradeNo payMent:payment completion:^(BOOL isSuccess, NSString *message, id result) {
+        if (isSuccess&&!message) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CREATE_PAY_TYPE_ORDER_NOTIFICATION object:result];
+        }else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
+        }
+    }];
+}
+
+-(void)comfirmOrder:(NSString *)tradeNo
+{
+    [self.webService comfirmOrder:tradeNo completion:^(BOOL isSuccess, NSString *message, id result) {
+        if (isSuccess&&!message) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CONFIRM_ORDER_NOTIFICATION object:result];
+        }else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
+        }
+    }];
+}
+
+-(void)buyBackOrder:(NSString *)tradeNo
+{
+    [self.webService buyBackOrder:tradeNo completion:^(BOOL isSuccess, NSString *message, id result) {
+        if (isSuccess&&!message) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:BUY_BACK_ORDER_NOTIFICATION object:result];
         }else
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
@@ -105,7 +145,6 @@
     return _entity;
 }
 
-
 -(NSMutableArray*)dataSource
 {
     if (!_dataSource) {
@@ -113,6 +152,5 @@
     }
     return _dataSource;
 }
-
 
 @end

@@ -8,9 +8,10 @@
 
 #import "fatherViewController.h"
 
+
 @interface weixinWitdrawalTypeViewController : fatherViewController
 //<WXApiDelegate>
 
 @property(strong,nonatomic)NSDictionary* messageDic;
-
+@property(strong,nonatomic)NSString* money;
 @end

@@ -59,11 +59,13 @@
         [self.model getAddressList];
     }else if ([notification.name isEqualToString:SET_DEFAULT_AREA_NOTIFICATION])
     {
-        [self.model getAddressList];
+//        [self.model getAddressList];
+        [self.navigationController popViewControllerAnimated:YES];
     }else if ([notification.name isEqualToString:START_EDIT_AREA_NOTIFICATION])
     {
         editAddressViewController* address = [[editAddressViewController alloc]init];
         address.entity = notification.object;
+        
         [self.navigationController pushViewController:address animated:YES];
     }else if ([notification.name isEqualToString:EDIT_AREA_NOTIFICATION])
     {
@@ -126,7 +128,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.entity = self.model.dataSource[indexPath.row];
+    self.Omodel.addEntity = self.model.dataSource[indexPath.row];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,6 +145,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     addressEntity* entity = self.model.dataSource[indexPath.row];
+    if ([self.Omodel.addEntity.addid isEqualToString:entity.addid]) {
+        self.Omodel.addEntity = nil;
+    }
     [self.model delAddress:entity.addid];
 }
 

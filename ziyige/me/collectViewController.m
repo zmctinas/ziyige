@@ -34,7 +34,7 @@
     
     [self registerCell];
     
-    [self.model getCollectList];
+    
     
     
     // Do any additional setup after loading the view from its nib.
@@ -43,6 +43,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.model getCollectList];
 }
 
 #pragma mark - getter
@@ -105,7 +110,15 @@
     goodsEntity* entity = self.model.goodsSource[indexPath.row];
     CGFloat height = width/entity.width.floatValue*entity.height.floatValue;
     entity.exceptHeight = height;
-    return  height;
+    NSDictionary *attribute = @{NSFontAttributeName : [UIFont systemFontOfSize:14]};
+    CGSize retSize = [entity.goods_name boundingRectWithSize:CGSizeMake(SCREEN_WIDTH/2, MAXFLOAT)
+                                                     options:
+                      NSStringDrawingTruncatesLastVisibleLine |
+                      NSStringDrawingUsesLineFragmentOrigin |
+                      NSStringDrawingUsesFontLeading
+                                                  attributes:attribute
+                                                     context:nil].size;
+    return  height+retSize.height+20+10;
 }
 
 @end

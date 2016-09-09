@@ -7,11 +7,14 @@
 //
 
 #import "aliWithdrawalViewController.h"
-//#import "withdrawalRecordViewController.h"
+#import "withRecordViewController.h"
 #import "aliAcountViewController.h"
+#import "withDrawlModel.h"
+#import "tipsViewController.h"
 
-@interface aliWithdrawalViewController ()
+@interface aliWithdrawalViewController ()<alertDelegate>
 
+@property(strong,nonatomic)withDrawlModel* model;
 @property (strong, nonatomic) IBOutlet UITextField *acountField;
 @property (strong, nonatomic) IBOutlet UITextField *reAliAcountField;
 @property (strong, nonatomic) IBOutlet UIView *reView;
@@ -41,12 +44,53 @@
 ////        [self.changeBtn setTitle:@"修改" forState:UIControlStateNormal];
 //    }
     
+    [self.model getPayment:@"ali_pay"];
+    
+    [self addObserverForNotifications:@[USER_GET_PAYMENT_NOTIFICATION,USER_WITHDRAWL_NOTIFICATION]];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - getter
+
+-(withDrawlModel*)model
+{
+    if (!_model) {
+        _model = [[withDrawlModel alloc]init];
+    }
+    return _model;
+}
+
+#pragma mark - private
+
+-(void)viewWillDissmiss
+{
+    withRecordViewController* record = [[withRecordViewController alloc]init];
+    record.isRootPush = YES;
+    [self.navigationController pushViewController:record animated:YES];
+}
+
+-(void)receivedNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:USER_GET_PAYMENT_NOTIFICATION]) {
+        NSLog(@"%@",notification.object);
+        NSDictionary* dic = (NSDictionary*)notification.object;
+        self.acountField.text = dic[@"ali_pay"];
+    }else if ([notification.name isEqualToString:USER_WITHDRAWL_NOTIFICATION])
+    {
+        tipsViewController* alert = [[tipsViewController alloc]init];
+        alert.delegate = self;
+        alert.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        alert.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+    }
 }
 
 -(void)setUpUI
@@ -123,7 +167,8 @@
 - (IBAction)changeBtn:(UIButton *)sender {
     
     aliAcountViewController* aliAcount = [[aliAcountViewController alloc]init];
-    aliAcount.messageDic = _messageDic;
+    aliAcount.model = self.model;
+    aliAcount.money = self.money;
     [self.navigationController pushViewController:aliAcount animated:YES];
     
 }
@@ -131,7 +176,7 @@
 - (IBAction)withDrawalBtn:(UIButton *)sender {
     
     if (self.acountField.text.length>0) {
-        [self requestMessage];
+        [self.model userWithDrawl:self.money type:@"ali_pay"];
     }else
     {
         UIAlertAction* action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

@@ -38,6 +38,8 @@
 #define GET_COLLECT_LIST_NOTIFICATION            @"收藏商品列表"
 #define ADD_COLLECT_NOTIFICATION                 @"收藏商品"
 #define DEL_COLLECT_NOTIFICATION                 @"删除收藏商品"
+#define RULE_DETAIL_NOTIFICATION                 @"规则详情"
+#define IMAGE_DETAIL_NOTIFICATION                @"图片详情"
 
 #define SELECT_AREA_NOTIFICATION                 @"选择地址"
 #define ADD_AREA_NOTIFICATION                    @"添加地址"
@@ -54,7 +56,29 @@
 
 #define ADD_MESSAGE_NOTIFICATION                 @"添加反馈"
 
-#define GET_APPLY_ENTITY_NOTIFICATION           @"组装好了一个ApplyEntity"
+#define GET_APPLY_ENTITY_NOTIFICATION            @"组装好了一个ApplyEntity"
+
+#define GET_MONEY_INDEX_NOTIFICATION             @"获取用户余额"
+
+#define USER_WITHDRAWL_NOTIFICATION              @"用户提现"
+
+#define USER_PAYMENT_NOTIFICATION                @"用户设置收款账号"
+
+#define USER_GET_PAYMENT_NOTIFICATION            @"用户获取收款账号"
+
+#define USER_WITHDRAWL_RECORD_NOTIFICATION       @"用户提现记录"
+
+#define USER_INVITE_NOTIFICATION                 @"用户邀请"
+
+#define USER_INVITE_RECORD_NOTIFICATION          @"用户邀请记录"
+
+#define CREATE_PAY_TYPE_ORDER_NOTIFICATION       @"下单"
+
+#define CONFIRM_ORDER_NOTIFICATION               @"确认收货"
+
+#define BUY_BACK_ORDER_NOTIFICATION              @"申请回购"
+
+#define GET_SEARCH_LIST_NOTIFICATION             @"获取搜索商品列表"
 
 #define FRIEND_LIST_NOTIFICATION                @"成功获取到好友列表"
 #define ADD_FRIEND_NOTIFICATION                 @"添加好友成功"

@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *specificationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *marketLabel;
 
 
 

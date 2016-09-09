@@ -7,13 +7,16 @@
 //
 
 #import "weixinWitdrawalTypeViewController.h"
-//#import "withdrawalRecordViewController.h"
+#import "withRecordViewController.h"
+#import "withDrawlModel.h"
+#import "tipsViewController.h"
 
-@interface weixinWitdrawalTypeViewController ()
+@interface weixinWitdrawalTypeViewController ()<alertDelegate>
 {
     NSDictionary* codeDic;
 }
 
+@property(strong,nonatomic)withDrawlModel* model;
 @property (strong, nonatomic) IBOutlet UITextField *acountField;
 
 @property (weak, nonatomic) IBOutlet UIButton *clickBtn;
@@ -42,6 +45,10 @@
     
     [self setUpUI];
     
+    [self.model getPayment:@"wei_pay"];
+    
+    [self addObserverForNotifications:@[USER_GET_PAYMENT_NOTIFICATION,USER_WITHDRAWL_NOTIFICATION]];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -50,7 +57,48 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - getter
+
+-(withDrawlModel*)model
+{
+    if (!_model) {
+        _model = [[withDrawlModel alloc]init];
+    }
+    return _model;
+}
+
+
 #pragma mark - private
+
+-(void)viewWillDissmiss
+{
+    withRecordViewController* record = [[withRecordViewController alloc]init];
+    record.isRootPush = YES;
+    [self.navigationController pushViewController:record animated:YES];
+}
+
+-(void)receivedNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:USER_GET_PAYMENT_NOTIFICATION]) {
+        
+        NSDictionary* dic = (NSDictionary*)notification.object;
+        self.acountField.text = dic[@"wei_pay"];
+        self.withdrawalBtn.enabled = YES;
+    }else if ([notification.name isEqualToString:USER_WITHDRAWL_NOTIFICATION])
+    {
+        tipsViewController* alert = [[tipsViewController alloc]init];
+        alert.delegate = self;
+        alert.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        alert.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+    }else if ([notification.name isEqualToString:USER_PAYMENT_NOTIFICATION])
+    {
+        self.withdrawalBtn.enabled = YES;
+    }
+}
 
 -(void)setUpUI
 {
@@ -113,14 +161,14 @@
 -(void)sendAuthRequest
 {
     
-//    [weixinObject getOpenid:^(NSDictionary *dic) {
-//        NSLog(@"%@",dic);
-//        
-//        codeDic = dic;
-//        
-//        [self requestMessage];
-//        
-//    }];
+    [weixinObject getOpenid:^(NSDictionary *dic) {
+        NSLog(@"%@",dic);
+        
+        codeDic = dic;
+        
+        self.acountField.text = dic[@"code"];
+        [self.model setPayment:dic[@"code"] type:@"wei_pay" realName:@""];
+    }];
 }
 
 #pragma mark - xib
@@ -133,7 +181,7 @@
 
 - (IBAction)withDrawalBtn:(UIButton *)sender {
     
-    [self requestdate];
+    [self.model userWithDrawl:self.money type:@"wei_pay"];
     
 }
 @end
