@@ -71,7 +71,16 @@
 -(void)refreshUI
 {
     if ([self.model.detailEntity.distribution isEqualToString:@"express"]) {
-        [_addressLabel setTitle:[NSString stringWithFormat:@"%@/%@/%@%@",self.model.detailEntity.province,self.model.detailEntity.city,self.model.detailEntity.district,self.model.detailEntity.address] forState:UIControlStateNormal];
+        if (self.model.detailEntity.province.length>0) {
+            [_addressLabel setTitle:[NSString stringWithFormat:@"%@/%@/%@%@",self.model.detailEntity.province,self.model.detailEntity.city,self.model.detailEntity.district,self.model.detailEntity.address] forState:UIControlStateNormal];
+        }else
+        {
+            [_addressLabel setTitle:@"无收货地址" forState:UIControlStateNormal];
+        }
+        
+    }else
+    {
+        [_addressLabel setTitle:@"无收货地址" forState:UIControlStateNormal];
     }
     
     _trade_noLabel.text = [NSString stringWithFormat:@"单号：%@",self.model.detailEntity.out_trade_no];
@@ -119,8 +128,8 @@
             break;
         case 4:
         {
-            [self.finishBtn setTitle:@"申请回购" forState:UIControlStateNormal];
-            self.finishBtn.enabled = YES;
+            [self.finishBtn setTitle:@"交易完成" forState:UIControlStateNormal];
+            self.finishBtn.enabled = NO;
         }
             break;
         case 5:

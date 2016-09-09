@@ -57,10 +57,15 @@
 
 -(void)getTradeList:(NSString *)status
 {
-    if ([status isEqualToString:oldStatus]) {
+    
+    __block NSMutableArray* source = self.dataSource;
+    
+    if (![oldStatus isEqualToString:status]) {
         self.pages = 1;
     }
-    __block NSMutableArray* source = self.dataSource;
+    
+    oldStatus = status;
+    
     [self.webService getOrderListuserid:[UserInfo info].currentUser.userId Status:status pages:[NSString stringWithFormat:@"%ld",self.pages] completion:^(BOOL isSuccess, NSString *message, id result) {
         if (isSuccess&&!message) {
             goodsResponseEntity* response = result;
@@ -80,6 +85,11 @@
                 self.pages++;
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:GET_ORDER_LIST_NOTIFICATION object:@(noMoreData)];
+        }else if (isSuccess&&message)
+        {
+            [source removeAllObjects];
+            [[NSNotificationCenter defaultCenter] postNotificationName:GET_ORDER_LIST_NOTIFICATION object:@(NO)];
+            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
         }else
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];

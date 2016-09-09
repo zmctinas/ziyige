@@ -93,6 +93,7 @@
             btn.selected = NO;
         }
     }
+    NSLog(@"%ld",(long)selectIndex);
     
 }
 

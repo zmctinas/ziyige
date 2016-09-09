@@ -283,7 +283,7 @@
 //东西山水
 -(void)searchGoods
 {
-    [self.model searchGoods:self.searchField.text type:[NSString stringWithFormat:@"%ld",type] cost:cost];
+    [self.model searchGoods:self.searchField.text type:[NSString stringWithFormat:@"%ld",(long)type] cost:cost];
 }
 
 #pragma mark - UITextFieldDelegate
