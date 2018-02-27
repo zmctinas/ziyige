@@ -289,7 +289,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if ([ValidationManager isLogin]) {
+    
         goodsDetailViewController* detail = [[goodsDetailViewController alloc]init];
         detail.hidesBottomBarWhenPushed = YES;
         goodsEntity* entity = self.model.goodsSource[indexPath.item];
@@ -297,6 +297,9 @@
         detail.model = self.model;
         [self.navigationController pushViewController:detail animated:YES];
 
+    
+    
+    
     
 }
 

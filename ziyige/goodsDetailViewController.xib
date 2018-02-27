@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="goodsDetailViewController">
@@ -22,7 +28,7 @@
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y3m-lH-78A">
                     <rect key="frame" x="0.0" y="20" width="375" height="603"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="YYb-qh-wNh"/>
                         <outlet property="delegate" destination="-1" id="gdr-Xo-60Z"/>
@@ -79,7 +85,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="购买" backgroundImage="icon_btn_buy">
-                                <color key="titleColor" red="0.93725490196078431" green="0.058823529411764705" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.93725490196078431" green="0.058823529411764705" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="highlighted" backgroundImage="icon_btn_buypressed"/>
                             <connections>
@@ -87,7 +93,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Juh-Ia-6S0" secondAttribute="trailing" id="3rS-Zs-LZJ"/>
                         <constraint firstAttribute="trailing" secondItem="Hid-qi-rhn" secondAttribute="trailing" constant="19" id="C64-Ei-jlh"/>
@@ -102,7 +108,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Y3m-lH-78A" secondAttribute="trailing" id="4KW-ND-GqQ"/>
                 <constraint firstItem="Y3m-lH-78A" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="967-zI-4i9"/>
@@ -111,14 +117,13 @@
                 <constraint firstItem="nC2-eL-fN1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Jdg-ln-dZo"/>
                 <constraint firstItem="jpg-iF-wln" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XQu-pR-l4n"/>
                 <constraint firstItem="Tp7-ZE-Esb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="beB-QG-mbv"/>
-                <constraint firstAttribute="bottom" secondItem="jpg-iF-wln" secondAttribute="bottom" id="bsM-SU-xWZ"/>
+                <constraint firstAttribute="bottomMargin" secondItem="jpg-iF-wln" secondAttribute="bottom" id="bsM-SU-xWZ"/>
                 <constraint firstAttribute="bottom" secondItem="nC2-eL-fN1" secondAttribute="bottom" id="kMQ-lv-8jP"/>
-                <constraint firstItem="jpg-iF-wln" firstAttribute="top" secondItem="Y3m-lH-78A" secondAttribute="bottom" id="kPm-Ba-xlO"/>
+                <constraint firstItem="jpg-iF-wln" firstAttribute="top" secondItem="Y3m-lH-78A" secondAttribute="bottomMargin" constant="8" id="kPm-Ba-xlO"/>
                 <constraint firstItem="Tp7-ZE-Esb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="nxr-ie-EKA"/>
                 <constraint firstAttribute="trailing" secondItem="jpg-iF-wln" secondAttribute="trailing" id="psx-4Q-w8F"/>
                 <constraint firstItem="Y3m-lH-78A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="smb-Pr-zeE"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="410.5" y="305.5"/>
         </view>
     </objects>
