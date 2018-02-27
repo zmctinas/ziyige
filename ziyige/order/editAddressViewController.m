@@ -119,6 +119,7 @@
             [self.view makeToast:@"请输入地址信息"];
         }
         
+        
     }
     
 }
@@ -157,12 +158,13 @@
 
 #pragma mark - UITextViewDelegate
 
-- (void)textViewDidBeginEditing:(UITextView *)textView
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     
     if ([textView.text isEqualToString:@"请输入详情地址"]) {
         textView.text = @"";
     }
+    return YES;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView

@@ -137,7 +137,7 @@
 
 -(void)searchGoods:(NSString*)keywords type:(NSString *)type cost:(NSString *)cost
 {
-    [self.webService searchGoods:keywords pages:[NSString stringWithFormat:@"%ld",(long)self.pages] type:type cost:cost completion:^(BOOL isSuccess, NSString *message, id result) {
+    [self.webService searchGoods:keywords pages:[NSString stringWithFormat:@"%ld",self.pages] type:type cost:cost completion:^(BOOL isSuccess, NSString *message, id result) {
         if (isSuccess&&!message) {
             goodsResponseEntity*  response = result;
             if (self.pages == 1)
@@ -155,11 +155,6 @@
                 self.pages++;
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:GET_SEARCH_LIST_NOTIFICATION object:@(noMoreData)];
-        }else if (isSuccess&&message)
-        {
-            [self.goodsSource removeAllObjects];
-            [[NSNotificationCenter defaultCenter] postNotificationName:GET_SEARCH_LIST_NOTIFICATION object:@(NO)];
-            [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
         }else
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:WebServiceErrorNotification object:message];
