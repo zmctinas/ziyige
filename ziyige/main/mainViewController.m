@@ -296,6 +296,12 @@
         self.model.curEntity = entity;
         detail.model = self.model;
         [self.navigationController pushViewController:detail animated:YES];
+//    }else
+//    {
+//        loginViewController* login = [[loginViewController alloc]init];
+//        login.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:login animated:YES];
+//    }
     
 }
 
